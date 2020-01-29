@@ -1,0 +1,25 @@
+name: formik-persist-CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "10.x"
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@u-next"
+      - name: Build
+        run: npm install && npm run prepublish
+      - name: Publish
+        run: npx can-npm-publish && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.FORMIK_PERSIST_GITHUB_TOKEN }}
