@@ -1,5 +1,5 @@
 {
-  "name": "formik-persist",
+  "name": "@u-next/formik-persist",
   "description": "Persist and rehydrate a Formik form",
   "version": "1.1.0-unext",
   "license": "MIT",
@@ -108,5 +108,8 @@
       "js",
       "json"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
