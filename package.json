@@ -4,7 +4,7 @@
   "version": "1.1.0-unext",
   "license": "MIT",
   "author": "Jared Palmer <jared@palmer.net>",
-  "repository": "jaredpalmer/formik-persist",
+  "repository": "@u-next/formik-persist",
   "keywords": [
     "formik",
     "react",
