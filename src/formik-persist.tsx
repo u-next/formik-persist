@@ -7,6 +7,7 @@ export interface PersistProps {
   name: string;
   debounce?: number;
   isSessionStorage?: boolean;
+  ignore?: string[];
 }
 
 class PersistImpl extends React.Component<
@@ -18,10 +19,20 @@ class PersistImpl extends React.Component<
   };
 
   saveForm = debounce((data: FormikProps<{}>) => {
+    const filtered: FormikProps<Record<string, any>> = {
+      ...data,
+    };
+    if (this.props.ignore && this.props.ignore.length) {
+      this.props.ignore.forEach((key: any) => {
+        delete filtered.values[key];
+        delete filtered.errors[key];
+        delete filtered.touched[key];
+      });
+    }
     if (this.props.isSessionStorage) {
-      window.sessionStorage.setItem(this.props.name, JSON.stringify(data));
+      window.sessionStorage.setItem(this.props.name, JSON.stringify(filtered));
     } else {
-      window.localStorage.setItem(this.props.name, JSON.stringify(data));
+      window.localStorage.setItem(this.props.name, JSON.stringify(filtered));
     }
   }, this.props.debounce);
 
