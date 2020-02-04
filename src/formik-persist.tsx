@@ -24,7 +24,7 @@ class PersistImpl extends React.Component<
     };
     if (this.props.ignore && this.props.ignore.length) {
       this.props.ignore.forEach((key: any) => {
-        delete filtered.values[key];
+        filtered.values[key] = filtered.initialValues[key];
         delete filtered.errors[key];
         delete filtered.touched[key];
       });
